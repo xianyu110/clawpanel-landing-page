@@ -21,18 +21,18 @@
 ---
 
 <p align="center">
-  <a href="https://introduce.tryopenclaw.asia/download.html">
+  <a href="https://www.tryopenclaw.asia/download.html">
     <img src="https://img.shields.io/badge/%F0%9F%93%A5%20%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85-%E7%82%B9%E5%87%BB%E8%8E%B7%E5%8F%96-6366f1?style=for-the-badge" alt="下载安装">
   </a>
 </p>
 
 ClawPanel 是 OpenClaw AI Agent 框架的可视化管理面板。内置智能 AI 助手，帮你一键安装 OpenClaw、自动诊断配置、排查问题、修复错误。
 
-> 🌐 **官网**: [introduce.tryopenclaw.asia](https://introduce.tryopenclaw.asia)  |  📦 **下载**: [introduce.tryopenclaw.asia/download.html](https://introduce.tryopenclaw.asia/download.html)
+> 🌐 **官网**: [www.tryopenclaw.asia](https://www.tryopenclaw.asia)  |  📦 **下载**: [www.tryopenclaw.asia/download.html](https://www.tryopenclaw.asia/download.html)
 
 ## 下载安装
 
-前往 [下载页面](https://introduce.tryopenclaw.asia/download.html) 获取最新版本安装包。
+前往 [下载页面](https://www.tryopenclaw.asia/download.html) 获取最新版本安装包。
 
 ### 安装包说明
 
