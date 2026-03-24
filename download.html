@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>下载 - ClawPanel</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -354,7 +355,15 @@
 
     <script>
         const CONFIG = {
-            repo: 'xianyu110/maynorai-clawpanel'
+            repo: 'xianyu110/maynorai-clawpanel',
+            // 国内镜像配置 - Gitee
+            mirror: {
+                enabled: true,
+                // Gitee releases 下载地址
+                baseUrl: 'https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download',
+                // 备用：如果 Gitee 也有 releases API，可以使用
+                api: 'https://gitee.com/api/v5/repos/the_efforts_paid_offf/clawpanel-landing-page/releases/latest'
+            }
         };
 
         function categorizeFile(filename) {
@@ -397,7 +406,7 @@
             return await response.json();
         }
 
-        function createDownloadLink(file) {
+        function createDownloadLink(file, isMirror = false) {
             const a = document.createElement('a');
             a.href = file.url;
             a.className = 'download-btn';
@@ -408,11 +417,11 @@
 
             const fileType = document.createElement('div');
             fileType.className = 'file-type';
-            fileType.textContent = file.name;
+            fileType.textContent = file.name + (isMirror ? ' 🇨🇳' : '');
 
             const fileName = document.createElement('div');
             fileName.className = 'file-name';
-            fileName.textContent = file.displayName || file.name;
+            fileName.textContent = isMirror ? '国内镜像加速' : (file.displayName || file.name);
 
             fileInfo.appendChild(fileType);
             fileInfo.appendChild(fileName);
@@ -442,7 +451,11 @@
                 linux: document.getElementById('linux-downloads')
             };
 
-            Object.values(containers).forEach(c => c.innerHTML = '');
+            Object.values(containers).forEach(c => {
+                while (c.firstChild) {
+                    c.removeChild(c.firstChild);
+                }
+            });
 
             const files = {};
             (release.assets || []).forEach(asset => {
@@ -451,11 +464,22 @@
                     if (!files[category.platform]) {
                         files[category.platform] = [];
                     }
+
+                    // GitHub 原始链接
+                    const githubUrl = asset.browser_download_url || ('releases/' + asset.name);
+
+                    // Gitee 镜像链接
+                    let mirrorUrl = '';
+                    if (CONFIG.mirror.enabled) {
+                        mirrorUrl = `${CONFIG.mirror.baseUrl}/${version}/${asset.name}`;
+                    }
+
                     files[category.platform].push({
                         ...category,
                         ...asset,
                         displayName: asset.name,
-                        url: asset.browser_download_url || ('releases/' + asset.name)
+                        url: githubUrl,
+                        mirrorUrl: mirrorUrl
                     });
                 }
             });
@@ -464,7 +488,15 @@
                 const container = containers[platform];
                 if (files[platform] && files[platform].length > 0) {
                     files[platform].forEach(file => {
-                        container.appendChild(createDownloadLink(file));
+                        // 优先显示国内镜像链接
+                        if (CONFIG.mirror.enabled && file.mirrorUrl) {
+                            container.appendChild(createDownloadLink({
+                                ...file,
+                                url: file.mirrorUrl
+                            }, true));
+                        }
+                        // 保留 GitHub 原始链接作为备用
+                        container.appendChild(createDownloadLink(file, false));
                     });
                 } else {
                     const div = document.createElement('div');

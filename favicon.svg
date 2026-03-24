@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 小龙虾身体 -->
+  <ellipse cx="50" cy="55" rx="25" ry="30" fill="#DC2626"/>
+  <!-- 身体纹理 -->
+  <ellipse cx="50" cy="45" rx="18" ry="8" fill="#B91C1C"/>
+  <ellipse cx="50" cy="55" rx="18" ry="8" fill="#B91C1C"/>
+  <ellipse cx="50" cy="65" rx="18" ry="8" fill="#B91C1C"/>
+  <!-- 头部 -->
+  <ellipse cx="50" cy="30" rx="20" ry="15" fill="#DC2626"/>
+  <!-- 眼睛 -->
+  <circle cx="40" cy="25" r="5" fill="#1F2937"/>
+  <circle cx="60" cy="25" r="5" fill="#1F2937"/>
+  <circle cx="41" cy="24" r="2" fill="white"/>
+  <circle cx="61" cy="24" r="2" fill="white"/>
+  <!-- 大钳子 - 左 -->
+  <ellipse cx="18" cy="40" rx="12" ry="8" fill="#DC2626"/>
+  <ellipse cx="12" cy="35" rx="6" ry="5" fill="#B91C1C"/>
+  <ellipse cx="12" cy="45" rx="6" ry="5" fill="#B91C1C"/>
+  <!-- 大钳子 - 右 -->
+  <ellipse cx="82" cy="40" rx="12" ry="8" fill="#DC2626"/>
+  <ellipse cx="88" cy="35" rx="6" ry="5" fill="#B91C1C"/>
+  <ellipse cx="88" cy="45" rx="6" ry="5" fill="#B91C1C"/>
+  <!-- 小腿 -->
+  <line x1="30" y1="70" x2="22" y2="85" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
+  <line x1="40" y1="75" x2="35" y2="90" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="78" x2="50" y2="95" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
+  <line x1="60" y1="75" x2="65" y2="90" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
+  <line x1="70" y1="70" x2="78" y2="85" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
+  <!-- 尾巴 -->
+  <path d="M50 85 Q50 100 45 95 M50 85 Q50 100 55 95" stroke="#DC2626" stroke-width="3" fill="none"/>
+</svg>
