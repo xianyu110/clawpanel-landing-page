@@ -508,15 +508,17 @@
                         files[category.platform] = [];
                     }
 
-                    const mirrorUrl = CONFIG.mirror.enabled
+                    // 优先使用 GitHub 官方下载链接
+                    const githubUrl = `https://github.com/${CONFIG.repo}/releases/download/${version}/${asset.name}`;
+                    const downloadUrl = CONFIG.mirror.enabled
                         ? `${CONFIG.mirror.baseUrl}/${version}/${asset.name}`
-                        : asset.browser_download_url || ('releases/' + asset.name);
+                        : githubUrl;
 
                     files[category.platform].push({
                         platform: category.platform,
                         typeName: category.name,
                         filename: asset.name,
-                        url: mirrorUrl
+                        url: downloadUrl
                     });
                 }
             });
