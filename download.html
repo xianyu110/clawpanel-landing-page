@@ -5,135 +5,288 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>下载 - ClawPanel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --accent: #6366f1;
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #eee8aa;
+            --text-secondary: #7aa2f7;
+            --accent-green: #9ece6a;
+            --accent-yellow: #ebdbb2;
+            --accent-blue: #7aa2f7;
+            --accent-purple: #bb9af7;
+            --accent-red: #f7768e;
+            --border-color: #414868;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'VT323', monospace;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             padding: 2rem;
+            min-height: 100vh;
+            image-rendering: pixelated;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .header { text-align: center; margin-bottom: 3rem; }
-        .header h1 {
-            font-size: 2.5rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
+
+        .pixel-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(113, 122, 162, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(113, 122, 162, 0.1) 1px, transparent 1px);
+            background-size: 8px 8px;
+            pointer-events: none;
         }
-        .version-info {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            font-size: 0.9rem;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
-        .platform-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-green);
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+        }
+
+        .header {
+            text-align: center;
             margin-bottom: 3rem;
         }
+
+        .header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--accent-green);
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .version-info {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 4px solid var(--border-color);
+            font-size: 1.1rem;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .version-info strong {
+            color: var(--accent-yellow);
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
         .platform-card {
             background: var(--bg-secondary);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s;
+            border: 4px solid var(--border-color);
+            padding: 2rem;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
         }
+
         .platform-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
+            border-color: var(--accent-green);
         }
+
         .platform-icon {
-            font-size: 2rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
+            display: block;
         }
+
         .platform-card h3 {
-            font-size: 1.25rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
             margin-bottom: 0.5rem;
+            color: var(--accent-blue);
         }
-        .platform-card p {
+
+        .platform-card > p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
         }
+
         .download-list {
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
         }
+
         .download-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.75rem 1rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
             text-decoration: none;
             color: var(--text-primary);
-            transition: all 0.3s;
-            font-size: 0.9rem;
+            transition: all 0.2s;
+            font-size: 1rem;
         }
+
         .download-btn:hover {
-            background: var(--accent);
-            border-color: var(--accent);
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: var(--bg-primary);
             transform: translateX(4px);
         }
+
+        .download-btn .file-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .download-btn .file-type {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
         .download-btn .file-name {
-            font-family: 'Monaco', 'Consolas', monospace;
             font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: monospace;
         }
+
+        .download-btn:hover .file-name {
+            color: var(--bg-primary);
+            opacity: 0.8;
+        }
+
         .download-btn .arrow {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            color: var(--accent-green);
         }
+
+        .download-btn:hover .arrow {
+            color: var(--bg-primary);
+        }
+
         .note {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 4px solid var(--accent-purple);
+            padding: 1.5rem;
             margin-top: 2rem;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
         }
+
         .note h4 {
-            color: var(--accent);
+            color: var(--accent-purple);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .note p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
             margin-bottom: 0.5rem;
         }
-        .note p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+
+        .note code {
+            display: block;
+            background: var(--bg-primary);
+            padding: 0.75rem 1rem;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            color: var(--accent-green);
+            margin-top: 0.75rem;
+            border: 2px solid var(--border-color);
+            overflow-x: auto;
         }
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
+
+        .note a {
+            color: var(--accent-green);
             text-decoration: none;
         }
-        .back-link:hover {
-            color: var(--accent);
+
+        .note a:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+            border-top: 4px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-green);
+            background: var(--bg-secondary);
+            border-color: var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .header h1 { font-size: 1.5rem; }
+            .platform-grid { grid-template-columns: 1fr; }
+            .version-info { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
+    <div class="pixel-grid"></div>
+
     <div class="container">
         <a href="index.html" class="back-link">← 返回首页</a>
 
@@ -146,7 +299,7 @@
 
         <div class="platform-grid">
             <!-- macOS -->
-            <div class="platform-card">
+            <div class="platform-card" id="macos">
                 <div class="platform-icon">🍎</div>
                 <h3>macOS</h3>
                 <p>适用于 macOS 11+ (Big Sur 及以上版本)</p>
@@ -156,7 +309,7 @@
             </div>
 
             <!-- Windows -->
-            <div class="platform-card">
+            <div class="platform-card" id="windows">
                 <div class="platform-icon">🪟</div>
                 <h3>Windows</h3>
                 <p>适用于 Windows 10/11</p>
@@ -166,7 +319,7 @@
             </div>
 
             <!-- Linux -->
-            <div class="platform-card">
+            <div class="platform-card" id="linux">
                 <div class="platform-icon">🐧</div>
                 <h3>Linux</h3>
                 <p>适用于主流 Linux 发行版</p>
@@ -178,45 +331,46 @@
 
         <div class="note">
             <h4>⚠️ macOS 首次打开提示</h4>
-            <p>如果提示"无法验证开发者"，请在终端执行：<br>
-            <code style="background: rgba(0,0,0,0.3); padding: 0.2rem 0.5rem; border-radius: 4px;">sudo xattr -rd com.apple.quarantine /Applications/maynoraiclawpanel.app</code><br>
-            或前往「系统设置 → 隐私与安全性」点击「仍要打开」。</p>
+            <p>如果提示"无法验证开发者"，请在终端执行：</p>
+            <code>sudo xattr -rd com.apple.quarantine /Applications/maynoraiclawpanel.app</code>
+            <p>或前往「系统设置 → ��私与安全性」点击「仍要打开」。</p>
         </div>
 
         <div class="note">
             <h4>📦 其他版本</h4>
-            <p>需要历史版本？访问 <a href="https://github.com/xianyu110/maynorai-clawpanel/releases" style="color: var(--accent);">GitHub Releases</a></p>
+            <p>需要历史版本？访问 <a href="https://github.com/xianyu110/maynorai-clawpanel/releases" target="_blank">GitHub Releases</a></p>
         </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="https://github.com/xianyu110/maynorai-clawpanel" target="_blank">GitHub</a>
+                <a href="https://github.com/xianyu110/maynorai-clawpanel/discussions" target="_blank">Discussions</a>
+                <a href="https://github.com/xianyu110/maynorai-clawpanel/issues/new" target="_blank">反馈</a>
+            </div>
+            <p>© 2026 ClawPanel | CC BY-NC-SA 4.0</p>
+        </footer>
     </div>
 
     <script>
-        // GitHub API 配置
         const CONFIG = {
-            repo: 'xianyu110/maynorai-clawpanel',
-            landingRepo: 'xianyu110/clawpanel-landing-page'
+            repo: 'xianyu110/maynorai-clawpanel'
         };
 
-        // 文件分类
         function categorizeFile(filename) {
             const lower = filename.toLowerCase();
-
-            // macOS
             if (lower.includes('aarch64.dmg') || lower.includes('arm64.dmg')) {
                 return { platform: 'macos', type: 'apple-silicon', name: 'Apple Silicon (M1/M2/M3/M4)' };
             }
             if (lower.includes('x64.dmg') || lower.includes('amd64.dmg')) {
-                return { platform: 'macos', type: 'intel', name: 'Intel' };
+                return { platform: 'macos', type: 'intel', name: 'Intel 芯片' };
             }
-
-            // Windows
             if (lower.includes('setup.exe')) {
                 return { platform: 'windows', type: 'exe', name: 'EXE 安装器（推荐）' };
             }
             if (lower.includes('.msi')) {
                 return { platform: 'windows', type: 'msi', name: 'MSI 安装器' };
             }
-
-            // Linux
             if (lower.includes('appimage')) {
                 return { platform: 'linux', type: 'appimage', name: 'AppImage（免安装）' };
             }
@@ -226,40 +380,71 @@
             if (lower.includes('.rpm')) {
                 return { platform: 'linux', type: 'rpm', name: 'RPM（Fedora/RHEL）' };
             }
-
             return null;
         }
 
-        // 获取最新版本
         async function getLatestRelease() {
-            // 先尝试从本地 releases/ 目录获取
             try {
                 const response = await fetch('releases/info.json');
                 if (response.ok) {
                     return await response.json();
                 }
             } catch (e) {
-                console.log('本地 releases 信息不存在，使用 GitHub API');
+                console.log('使用 GitHub API');
             }
-
-            // 从 GitHub API 获取
-            const response = await fetch(`https://api.github.com/repos/${CONFIG.repo}/releases/latest`);
+            const response = await fetch('https://api.github.com/repos/' + CONFIG.repo + '/releases/latest');
             if (!response.ok) throw new Error('Failed to fetch release');
             return await response.json();
         }
 
-        // 渲染下载列表
+        function createDownloadLink(file) {
+            const a = document.createElement('a');
+            a.href = file.url;
+            a.className = 'download-btn';
+            a.target = '_blank';
+
+            const fileInfo = document.createElement('div');
+            fileInfo.className = 'file-info';
+
+            const fileType = document.createElement('div');
+            fileType.className = 'file-type';
+            fileType.textContent = file.name;
+
+            const fileName = document.createElement('div');
+            fileName.className = 'file-name';
+            fileName.textContent = file.displayName || file.name;
+
+            fileInfo.appendChild(fileType);
+            fileInfo.appendChild(fileName);
+
+            const arrow = document.createElement('span');
+            arrow.className = 'arrow';
+            arrow.textContent = '↓';
+
+            a.appendChild(fileInfo);
+            a.appendChild(arrow);
+
+            return a;
+        }
+
         function renderDownloads(release) {
             const version = release.tag_name || release.version;
             const versionInfo = document.getElementById('version-info');
-            versionInfo.innerHTML = `最新版本: <strong>${version}</strong> · ${new Date(release.published_at).toLocaleDateString('zh-CN')}`;
+            const strong = document.createElement('strong');
+            strong.textContent = version;
+            versionInfo.textContent = '最新版本: ';
+            versionInfo.appendChild(strong);
+            versionInfo.appendChild(document.createTextNode(' · ' + new Date(release.published_at).toLocaleDateString('zh-CN')));
 
-            const macosDownloads = document.getElementById('macos-downloads');
-            const windowsDownloads = document.getElementById('windows-downloads');
-            const linuxDownloads = document.getElementById('linux-downloads');
+            const containers = {
+                macos: document.getElementById('macos-downloads'),
+                windows: document.getElementById('windows-downloads'),
+                linux: document.getElementById('linux-downloads')
+            };
+
+            Object.values(containers).forEach(c => c.innerHTML = '');
 
             const files = {};
-
             (release.assets || []).forEach(asset => {
                 const category = categorizeFile(asset.name);
                 if (category) {
@@ -269,65 +454,34 @@
                     files[category.platform].push({
                         ...category,
                         ...asset,
-                        url: asset.browser_download_url || `releases/${asset.name}`
+                        displayName: asset.name,
+                        url: asset.browser_download_url || ('releases/' + asset.name)
                     });
                 }
             });
 
-            // 渲染 macOS
-            if (files.macos && files.macos.length > 0) {
-                macosDownloads.innerHTML = files.macos.map(file => `
-                    <a href="${file.url}" class="download-btn" download>
-                        <div>
-                            <div style="font-weight: 500; margin-bottom: 0.25rem;">${file.name}</div>
-                            <div class="file-name">${file.name.replace('.dmg', '')}.dmg</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                `).join('');
-            } else {
-                macosDownloads.innerHTML = '<div style="color: var(--text-secondary);">暂无可用下载</div>';
-            }
-
-            // 渲染 Windows
-            if (files.windows && files.windows.length > 0) {
-                windowsDownloads.innerHTML = files.windows.map(file => `
-                    <a href="${file.url}" class="download-btn" download>
-                        <div>
-                            <div style="font-weight: 500; margin-bottom: 0.25rem;">${file.name}</div>
-                            <div class="file-name">${file.name}</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                `).join('');
-            } else {
-                windowsDownloads.innerHTML = '<div style="color: var(--text-secondary);">暂无可用下载</div>';
-            }
-
-            // 渲染 Linux
-            if (files.linux && files.linux.length > 0) {
-                linuxDownloads.innerHTML = files.linux.map(file => `
-                    <a href="${file.url}" class="download-btn" download>
-                        <div>
-                            <div style="font-weight: 500; margin-bottom: 0.25rem;">${file.name}</div>
-                            <div class="file-name">${file.name}</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                `).join('');
-            } else {
-                linuxDownloads.innerHTML = '<div style="color: var(--text-secondary);">暂无可用下载</div>';
-            }
+            Object.keys(containers).forEach(platform => {
+                const container = containers[platform];
+                if (files[platform] && files[platform].length > 0) {
+                    files[platform].forEach(file => {
+                        container.appendChild(createDownloadLink(file));
+                    });
+                } else {
+                    const div = document.createElement('div');
+                    div.style.cssText = 'color: var(--text-secondary); padding: 1rem;';
+                    div.textContent = '暂无可用下载';
+                    container.appendChild(div);
+                }
+            });
         }
 
-        // 初始化
         getLatestRelease()
-            .then(release => {
-                renderDownloads(release);
-            })
+            .then(release => renderDownloads(release))
             .catch(error => {
                 console.error('Error:', error);
-                document.getElementById('version-info').innerHTML = '<span style="color: #ef4444;">获取版本信息失败</span>';
+                const versionInfo = document.getElementById('version-info');
+                versionInfo.style.color = 'var(--accent-red)';
+                versionInfo.textContent = '获取版本信息失败';
                 document.querySelectorAll('.loading').forEach(el => {
                     el.textContent = '加载失败';
                 });
