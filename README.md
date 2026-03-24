@@ -26,7 +26,7 @@
   </a>
 </p>
 
-ClawPanel 是 OpenClaw AI Agent 框架的可视化管理面板。内置智能 AI 助手，帮你一键安装 OpenClaw、自动诊断配置、排查问题、修复错误。
+MaynorAIClawPanel 是 OpenClaw AI Agent 框架的可视化管理面板。内置智能 AI 助手，帮你一键安装 OpenClaw、自动诊断配置、排查问题、修复错误。
 
 > 🌐 **官网**: [www.tryopenclaw.asia](https://www.tryopenclaw.asia)  |  📦 **下载**: [www.tryopenclaw.asia/download.html](https://www.tryopenclaw.asia/download.html)
 
