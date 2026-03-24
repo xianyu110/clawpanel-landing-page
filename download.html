@@ -49,7 +49,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -101,178 +101,89 @@
             font-family: 'Press Start 2P', cursive;
         }
 
-        .section-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.2rem;
-            color: var(--accent-green);
-            margin: 3rem 0 1.5rem;
+        .main-download {
             text-align: center;
-            display: flex;
+            margin: 3rem 0;
+        }
+
+        .download-btn-main {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 1rem;
-        }
-
-        .section-title::before,
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: var(--border-color);
-            max-width: 200px;
-        }
-
-        .mirror-badge {
-            display: inline-block;
-            background: #ff4757;
-            color: white;
-            padding: 0.2rem 0.5rem;
-            font-size: 0.7rem;
-            border-radius: 2px;
-            margin-left: 0.5rem;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(135deg, #ffd700, #ffcc00);
+            border: 4px solid #ffcc00;
+            text-decoration: none;
+            color: #1a1a1a;
             font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
+            transition: all 0.2s;
         }
 
-        .platform-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        .download-btn-main:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .download-btn-main .icon {
+            font-size: 2rem;
+        }
+
+        .password-info {
+            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            display: inline-block;
+        }
+
+        .password-info p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .password-info code {
+            color: var(--accent-green);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        .platform-info {
+            display: flex;
+            justify-content: center;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
         }
 
-        .platform-card {
+        .platform-item {
+            text-align: center;
+            padding: 1.5rem;
             background: var(--bg-secondary);
             border: 4px solid var(--border-color);
-            padding: 2rem;
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+            min-width: 140px;
         }
 
-        .platform-card:hover {
-            border-color: var(--accent-green);
-        }
-
-        .platform-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .platform-item .icon {
+            font-size: 2.5rem;
             display: block;
-        }
-
-        .platform-card h3 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1rem;
             margin-bottom: 0.5rem;
-            color: var(--accent-blue);
         }
 
-        .platform-card > p {
+        .platform-item .name {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .download-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .download-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.25rem;
-            background: var(--bg-primary);
-            border: 2px solid var(--border-color);
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.2s;
-            font-size: 1rem;
-        }
-
-        .download-btn:hover {
-            background: var(--accent-green);
-            border-color: var(--accent-green);
-            color: var(--bg-primary);
-            transform: translateX(4px);
-        }
-
-        .download-btn .file-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .download-btn .file-type {
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .download-btn .file-name {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-family: monospace;
-        }
-
-        .download-btn:hover .file-name {
-            color: var(--bg-primary);
-            opacity: 0.8;
-        }
-
-        .download-btn .arrow {
-            font-size: 1.5rem;
-            color: var(--accent-green);
-        }
-
-        .download-btn:hover .arrow {
-            color: var(--bg-primary);
-        }
-
-        /* 国内镜像样式 */
-        .mirror-section .platform-card {
-            border-color: #ff4757;
-        }
-
-        .mirror-section .download-btn {
-            border-color: #ff6b6b;
-        }
-
-        .mirror-section .download-btn:hover {
-            background: #ff4757;
-            border-color: #ff4757;
-        }
-
-        .mirror-section .download-btn .arrow {
-            color: #ff6b6b;
-        }
-
-        .mirror-section .download-btn:hover .arrow {
-            color: white;
-        }
-
-        /* 国内镜像按钮样式 */
-        .download-btn.mirror-btn {
-            border-color: #ff6b6b;
-            background: rgba(255, 71, 87, 0.1);
-        }
-
-        .download-btn.mirror-btn:hover {
-            background: #ff4757;
-            border-color: #ff4757;
-        }
-
-        .download-btn.mirror-btn .arrow {
-            color: #ff6b6b;
-        }
-
-        .download-btn.mirror-btn:hover .arrow {
-            color: white;
         }
 
         .note {
             background: var(--bg-secondary);
             border: 4px solid var(--accent-purple);
             padding: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
         }
 
@@ -302,22 +213,6 @@
             margin-top: 0.75rem;
             border: 2px solid var(--border-color);
             overflow-x: auto;
-        }
-
-        .note a {
-            color: var(--accent-green);
-            text-decoration: none;
-        }
-
-        .note a:hover {
-            text-decoration: underline;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 1.5rem;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
         }
 
         .footer {
@@ -353,8 +248,12 @@
         @media (max-width: 768px) {
             body { padding: 1rem; }
             .header h1 { font-size: 1.5rem; }
-            .platform-grid { grid-template-columns: 1fr; }
-            .version-info { font-size: 0.9rem; }
+            .download-btn-main {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            .platform-info { gap: 1rem; }
+            .platform-item { min-width: 120px; padding: 1rem; }
         }
     </style>
 </head>
@@ -371,131 +270,29 @@
             </div>
         </div>
 
-        <h2 class="section-title">下载</h2>
-        <div class="platform-grid">
-            <!-- macOS -->
-            <div class="platform-card">
-                <div class="platform-icon">🍎</div>
-                <h3>macOS</h3>
-                <p>适用于 macOS 11+ (Big Sur 及以上版本)</p>
-                <div class="download-list">
-                    <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_aarch64.dmg" class="download-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">Apple Silicon (M1/M2/M3/M4)</div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_aarch64.dmg</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_aarch64.dmg" class="download-btn mirror-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">Apple Silicon (M1/M2/M3/M4) <span class="mirror-badge">国内镜像</span></div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_aarch64.dmg</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_x64.dmg" class="download-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">Intel 芯片</div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_x64.dmg</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_x64.dmg" class="download-btn mirror-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">Intel 芯片 <span class="mirror-badge">国内镜像</span></div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_x64.dmg</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                </div>
-            </div>
+        <div class="main-download">
+            <a href="https://pan.quark.cn/s/4141f97075bd?pwd=u46q" class="download-btn-main" target="_blank">
+                <span class="icon">📦</span>
+                <span>点击下载</span>
+            </a>
 
-            <!-- Windows -->
-            <div class="platform-card">
-                <div class="platform-icon">🪟</div>
-                <h3>Windows</h3>
-                <p>适用于 Windows 10/11</p>
-                <div class="download-list">
-                    <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_x64-setup.exe" class="download-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">EXE 安装器（推荐）</div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_x64-setup.exe</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_x64-setup.exe" class="download-btn mirror-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">EXE 安装器（推荐） <span class="mirror-badge">国内镜像</span></div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_x64-setup.exe</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_x64_en-US.msi" class="download-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">MSI 安装器（企业部署）</div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_x64_en-US.msi</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_x64_en-US.msi" class="download-btn mirror-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">MSI 安装器（企业部署） <span class="mirror-badge">国内镜像</span></div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_x64_en-US.msi</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                </div>
+            <div class="password-info">
+                <p>提取码: <code>u46q</code></p>
             </div>
+        </div>
 
-            <!-- Linux -->
-            <div class="platform-card">
-                <div class="platform-icon">🐧</div>
-                <h3>Linux</h3>
-                <p>适用于主流 Linux 发行版</p>
-                <div class="download-list">
-                    <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_amd64.AppImage" class="download-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">AppImage（免安装）</div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_amd64.AppImage</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_amd64.AppImage" class="download-btn mirror-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">AppImage（免安装） <span class="mirror-badge">国内镜像</span></div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_amd64.AppImage</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_amd64.deb" class="download-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">DEB（Debian/Ubuntu）</div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_amd64.deb</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download/v0.5.13/maynoraiclawpanel_0.5.13_amd64.deb" class="download-btn mirror-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">DEB（Debian/Ubuntu） <span class="mirror-badge">国内镜像</span></div>
-                            <div class="file-name">maynoraiclawpanel_0.5.13_amd64.deb</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/download/v0.5.13/maynoraiclawpanel-0.5.13-1.x86_64.rpm" class="download-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">RPM（Fedora/RHEL）</div>
-                            <div class="file-name">maynoraiclawpanel-0.5.13-1.x86_64.rpm</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                    <a href="https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download/v0.5.13/maynoraiclawpanel-0.5.13-1.x86_64.rpm" class="download-btn mirror-btn" target="_blank">
-                        <div class="file-info">
-                            <div class="file-type">RPM（Fedora/RHEL） <span class="mirror-badge">国内镜像</span></div>
-                            <div class="file-name">maynoraiclawpanel-0.5.13-1.x86_64.rpm</div>
-                        </div>
-                        <span class="arrow">↓</span>
-                    </a>
-                </div>
+        <div class="platform-info">
+            <div class="platform-item">
+                <span class="icon">🍎</span>
+                <span class="name">macOS</span>
+            </div>
+            <div class="platform-item">
+                <span class="icon">🪟</span>
+                <span class="name">Windows</span>
+            </div>
+            <div class="platform-item">
+                <span class="icon">🐧</span>
+                <span class="name">Linux</span>
             </div>
         </div>
 
@@ -509,7 +306,7 @@
         <footer class="footer">
             <div class="footer-links">
                 <a href="index.html">首页</a>
-                <a href="https://github.com/xianyu110/maynorai-clawpanel/releases" target="_blank">更多版本</a>
+                <a href="https://github.com/xianyu110/maynorai-clawpanel/releases" target="_blank">GitHub Releases</a>
             </div>
             <p>© 2026 MaynorAIClawPanel | CC BY-NC-SA 4.0</p>
         </footer>
