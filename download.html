@@ -352,11 +352,10 @@
             </div>
         </div>
 
-        <!-- GitHub 下载 -->
-        <h2 class="section-title">GitHub 下载</h2>
-        <div class="platform-grid" id="github-section">
+        <h2 class="section-title">下载</h2>
+        <div class="platform-grid" id="download-section">
             <!-- macOS -->
-            <div class="platform-card" id="macos">
+            <div class="platform-card">
                 <div class="platform-icon">🍎</div>
                 <h3>macOS</h3>
                 <p>适用于 macOS 11+ (Big Sur 及以上版本)</p>
@@ -366,7 +365,7 @@
             </div>
 
             <!-- Windows -->
-            <div class="platform-card" id="windows">
+            <div class="platform-card">
                 <div class="platform-icon">🪟</div>
                 <h3>Windows</h3>
                 <p>适用于 Windows 10/11</p>
@@ -376,45 +375,11 @@
             </div>
 
             <!-- Linux -->
-            <div class="platform-card" id="linux">
+            <div class="platform-card">
                 <div class="platform-icon">🐧</div>
                 <h3>Linux</h3>
                 <p>适用于主流 Linux 发行版</p>
                 <div class="download-list" id="linux-downloads">
-                    <div class="loading">加载中...</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 国内镜像下载 -->
-        <h2 class="section-title">国内镜像 <span class="mirror-badge">🇨🇳 推荐</span></h2>
-        <div class="platform-grid mirror-section" id="mirror-section">
-            <!-- macOS 镜像 -->
-            <div class="platform-card">
-                <div class="platform-icon">🍎</div>
-                <h3>macOS</h3>
-                <p>适用于 macOS 11+ (Big Sur 及以上版本)</p>
-                <div class="download-list" id="macos-mirror-downloads">
-                    <div class="loading">加载中...</div>
-                </div>
-            </div>
-
-            <!-- Windows 镜像 -->
-            <div class="platform-card">
-                <div class="platform-icon">🪟</div>
-                <h3>Windows</h3>
-                <p>适用于 Windows 10/11</p>
-                <div class="download-list" id="windows-mirror-downloads">
-                    <div class="loading">加载中...</div>
-                </div>
-            </div>
-
-            <!-- Linux 镜像 -->
-            <div class="platform-card">
-                <div class="platform-icon">🐧</div>
-                <h3>Linux</h3>
-                <p>适用于主流 Linux 发行版</p>
-                <div class="download-list" id="linux-mirror-downloads">
                     <div class="loading">加载中...</div>
                 </div>
             </div>
@@ -427,17 +392,9 @@
             <p>或前往「系统设置 → 隐私与安全性」点击「仍要打开」。</p>
         </div>
 
-        <div class="note">
-            <h4>📦 其他版本</h4>
-            <p>需要历史版本？访问 <a href="https://github.com/xianyu110/maynorai-clawpanel/releases" target="_blank">GitHub Releases</a></p>
-        </div>
-
         <footer class="footer">
             <div class="footer-links">
                 <a href="index.html">首页</a>
-                <a href="https://github.com/xianyu110/maynorai-clawpanel" target="_blank">GitHub</a>
-                <a href="https://github.com/xianyu110/maynorai-clawpanel/discussions" target="_blank">Discussions</a>
-                <a href="https://github.com/xianyu110/maynorai-clawpanel/issues/new" target="_blank">反馈</a>
             </div>
             <p>© 2026 ClawPanel | CC BY-NC-SA 4.0</p>
         </footer>
@@ -446,7 +403,6 @@
     <script>
         const CONFIG = {
             repo: 'xianyu110/maynorai-clawpanel',
-            // 国内镜像配置 - Gitee
             mirror: {
                 enabled: true,
                 baseUrl: 'https://gitee.com/the_efforts_paid_offf/clawpanel-landing-page/releases/download'
@@ -493,7 +449,7 @@
             return await response.json();
         }
 
-        function createDownloadLink(file, isMirror = false) {
+        function createDownloadLink(file) {
             const a = document.createElement('a');
             a.href = file.url;
             a.className = 'download-btn';
@@ -532,22 +488,13 @@
             versionInfo.appendChild(strong);
             versionInfo.appendChild(document.createTextNode(' · ' + new Date(release.published_at).toLocaleDateString('zh-CN')));
 
-            // GitHub 下载容器
-            const githubContainers = {
+            const containers = {
                 macos: document.getElementById('macos-downloads'),
                 windows: document.getElementById('windows-downloads'),
                 linux: document.getElementById('linux-downloads')
             };
 
-            // 镜像下载容器
-            const mirrorContainers = {
-                macos: document.getElementById('macos-mirror-downloads'),
-                windows: document.getElementById('windows-mirror-downloads'),
-                linux: document.getElementById('linux-mirror-downloads')
-            };
-
-            // 清空所有容器
-            [...Object.values(githubContainers), ...Object.values(mirrorContainers)].forEach(c => {
+            Object.values(containers).forEach(c => {
                 while (c.firstChild) {
                     c.removeChild(c.firstChild);
                 }
@@ -561,52 +508,24 @@
                         files[category.platform] = [];
                     }
 
-                    const githubUrl = asset.browser_download_url || ('releases/' + asset.name);
                     const mirrorUrl = CONFIG.mirror.enabled
                         ? `${CONFIG.mirror.baseUrl}/${version}/${asset.name}`
-                        : '';
+                        : asset.browser_download_url || ('releases/' + asset.name);
 
                     files[category.platform].push({
                         platform: category.platform,
                         typeName: category.name,
                         filename: asset.name,
-                        githubUrl: githubUrl,
-                        mirrorUrl: mirrorUrl
+                        url: mirrorUrl
                     });
                 }
             });
 
-            // 渲染 GitHub 下载
-            Object.keys(githubContainers).forEach(platform => {
-                const container = githubContainers[platform];
+            Object.keys(containers).forEach(platform => {
+                const container = containers[platform];
                 if (files[platform] && files[platform].length > 0) {
                     files[platform].forEach(file => {
-                        container.appendChild(createDownloadLink({
-                            url: file.githubUrl,
-                            typeName: file.typeName,
-                            filename: file.filename
-                        }, false));
-                    });
-                } else {
-                    const div = document.createElement('div');
-                    div.style.cssText = 'color: var(--text-secondary); padding: 1rem;';
-                    div.textContent = '暂无可用下载';
-                    container.appendChild(div);
-                }
-            });
-
-            // 渲染国内镜像下载
-            Object.keys(mirrorContainers).forEach(platform => {
-                const container = mirrorContainers[platform];
-                if (files[platform] && files[platform].length > 0) {
-                    files[platform].forEach(file => {
-                        if (file.mirrorUrl) {
-                            container.appendChild(createDownloadLink({
-                                url: file.mirrorUrl,
-                                typeName: file.typeName,
-                                filename: file.filename
-                            }, true));
-                        }
+                        container.appendChild(createDownloadLink(file));
                     });
                 } else {
                     const div = document.createElement('div');
