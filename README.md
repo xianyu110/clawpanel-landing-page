@@ -3,12 +3,11 @@
 </p>
 
 <p align="center">
-  <strong>本软件配套纸质书《OpenClaw超级个体实操手册》已出版！ 🛒 <a href="https://item.jd.com/14669463.html">京东专属购买链接（¥42，原价¥59.8）</a></strong>
+  <strong>鏈蒋浠堕厤濂楃焊璐ㄤ功銆奜penClaw瓒呯骇涓綋瀹炴搷鎵嬪唽銆嬪凡鍑虹増锛?馃洅 <a href="https://item.jd.com/14669463.html">浜笢涓撳睘璐拱閾炬帴锛埪?2锛屽師浠仿?9.8锛?/a></strong>
 </p>
 
 <p align="center">
-  内置 AI 助手的老 OpenClaw 管理面板 — 一键安装、配置、诊断、修复
-</p>
+  鍐呯疆 AI 鍔╂墜鐨勮€?OpenClaw 绠＄悊闈㈡澘 鈥?涓€閿畨瑁呫€侀厤缃€佽瘖鏂€佷慨澶?</p>
 
 <p align="center">
   <a href="https://github.com/xianyu110/maynorai-clawpanel/releases/latest">
@@ -26,37 +25,34 @@
 
 <p align="center">
   <a href="https://www.tryopenclaw.asia/download.html">
-    <img src="https://img.shields.io/badge/%F0%9F%93%A5%20%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-%E7%82%B9%E5%87%BB%E4%B%96%E5%8F%96-6366f1?style=for-the-badge" alt="下载安装">
+    <img src="https://img.shields.io/badge/%F0%9F%93%A5%20%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85-%E7%82%B9%E5%87%BB%E4%B%96%E5%8F%96-6366f1?style=for-the-badge" alt="涓嬭浇瀹夎">
   </a>
 </p>
 
-MaynorAIClawPanel 是 OpenClaw AI Agent 框架的可视化管理面板。内置智能 AI 助手，帮你一键安装 OpenClaw、自动诊断配置、排查问题、修复错误。
+MaynorAIClawPanel 鏄?OpenClaw AI Agent 妗嗘灦鐨勫彲瑙嗗寲绠＄悊闈㈡澘銆傚唴缃櫤鑳?AI 鍔╂墜锛屽府浣犱竴閿畨瑁?OpenClaw銆佽嚜鍔ㄨ瘖鏂厤缃€佹帓鏌ラ棶棰樸€佷慨澶嶉敊璇€?
+> 馃寪 **瀹樼綉**: [www.tryopenclaw.asia](https://www.tryopenclaw.asia) | 馃摝 **涓嬭浇**: [www.tryopenclaw.asia/download.html](https://www.tryopenclaw.asia/download.html)
 
-> 🌐 **官网**: [www.tryopenclaw.asia](https://www.tryopenclaw.asia) | 📦 **下载**: [www.tryopenclaw.asia/download.html](https://www.tryopenclaw.asia/download.html)
+## 涓嬭浇瀹夎
 
-## 下载安装
-
-前往 [下载页面](https://www.tryopenclaw.asia/download.html) 获取最新版本安装包。
-
-### 安装包说明
-
-| 后缀 | 系统 |
+鍓嶅線 [涓嬭浇椤甸潰](https://www.tryopenclaw.asia/download.html) 鑾峰彇鏈€鏂扮増鏈畨瑁呭寘銆?
+### 瀹夎鍖呰鏄?
+| 鍚庣紑 | 绯荤粺 |
 |------|------|
-| aarch64.dmg | macOS M芯片 (M1/M2/M3/M4) |
+| aarch64.dmg | macOS M鑺墖 (M1/M2/M3/M4) |
 | x64.dmg | macOS Intel |
 | exe / msi | Windows |
 | AppImage / deb / rpm | Linux |
 
-## Docker 部署
+## Docker 閮ㄧ讲
 
-```bash
+`ash
 docker run -d --name clawpanel --restart unless-stopped -p 1420:1420 -p 18789:18789 -v clawpanel-data:/root/.openclaw -e ACCESS_PASSWORD=123456 maynorai/maynoraiclawpanel:latest
-```
+`
 
-访问 http://localhost:1420，默认密码: 123456
+璁块棶 http://localhost:1420锛岄粯璁ゅ瘑鐮? 123456
 
-## 更多信息
+## 鏇村淇℃伅
 
-- 完整文档: [GitHub README](https://github.com/xianyu110/maynorai-clawpanel#readme)
-- 问题反馈: [GitHub Issues](https://github.com/xianyu110/maynorai-clawpanel/issues)
-- 许可证: CC BY-NC-SA 4.0 (仅限非商业用途)
+- 瀹屾暣鏂囨。: [GitHub README](https://github.com/xianyu110/maynorai-clawpanel#readme)
+- 闂鍙嶉: [GitHub Issues](https://github.com/xianyu110/maynorai-clawpanel/issues)
+- 璁稿彲璇? CC BY-NC-SA 4.0 (浠呴檺闈炲晢涓氱敤閫?
